@@ -1,0 +1,129 @@
+[
+  {
+    "name": "fresh driver",
+    "input": {
+      "events": [],
+      "config": { "cycleRule": "60_7", "reminderLeadSeconds": 1800 },
+      "asOf": 1735689600000,
+      "recapDays": []
+    },
+    "expected": {
+      "currentStatus": "off_duty",
+      "drivingRemainingMs": 39600000,
+      "dutyWindowRemainingMs": 50400000,
+      "breakRequiredInMs": null,
+      "cycleRemainingMs": 216000000,
+      "drivingAccumulatedMs": 0,
+      "onDutyAccumulatedMs": 0,
+      "violationRules": []
+    }
+  },
+  {
+    "name": "five hours driving",
+    "input": {
+      "events": [
+        {
+          "id": "event-1",
+          "driverId": "driver-1",
+          "status": "driving",
+          "startedAt": 1735689600000,
+          "endedAt": 1735707600000,
+          "source": "driver"
+        }
+      ],
+      "config": { "cycleRule": "60_7", "reminderLeadSeconds": 1800 },
+      "asOf": 1735707600000,
+      "recapDays": []
+    },
+    "expected": {
+      "currentStatus": "driving",
+      "drivingRemainingMs": 21600000,
+      "dutyWindowRemainingMs": 32400000,
+      "breakRequiredInMs": 10800000,
+      "cycleRemainingMs": 198000000,
+      "drivingAccumulatedMs": 18000000,
+      "onDutyAccumulatedMs": 18000000,
+      "violationRules": []
+    }
+  },
+  {
+    "name": "driving and break violations",
+    "input": {
+      "events": [
+        {
+          "id": "event-1",
+          "driverId": "driver-1",
+          "status": "driving",
+          "startedAt": 1735689600000,
+          "endedAt": 1735732800000,
+          "source": "driver"
+        }
+      ],
+      "config": { "cycleRule": "70_8", "reminderLeadSeconds": 1800 },
+      "asOf": 1735732800000,
+      "recapDays": []
+    },
+    "expected": {
+      "currentStatus": "driving",
+      "drivingRemainingMs": 0,
+      "dutyWindowRemainingMs": 7200000,
+      "breakRequiredInMs": 0,
+      "cycleRemainingMs": 208800000,
+      "drivingAccumulatedMs": 43200000,
+      "onDutyAccumulatedMs": 43200000,
+      "violationRules": ["driving_11h", "break_30min"]
+    }
+  },
+  {
+    "name": "qualifying reset",
+    "input": {
+      "events": [
+        {
+          "id": "event-1",
+          "driverId": "driver-1",
+          "status": "driving",
+          "startedAt": 1735689600000,
+          "endedAt": 1735707600000,
+          "source": "driver"
+        },
+        {
+          "id": "event-2",
+          "driverId": "driver-1",
+          "status": "sleeper_berth",
+          "startedAt": 1735707600000,
+          "endedAt": 1735725600000,
+          "source": "driver"
+        },
+        {
+          "id": "event-3",
+          "driverId": "driver-1",
+          "status": "off_duty",
+          "startedAt": 1735725600000,
+          "endedAt": 1735743600000,
+          "source": "driver"
+        },
+        {
+          "id": "event-4",
+          "driverId": "driver-1",
+          "status": "driving",
+          "startedAt": 1735743600000,
+          "endedAt": 1735750800000,
+          "source": "driver"
+        }
+      ],
+      "config": { "cycleRule": "70_8", "reminderLeadSeconds": 1800 },
+      "asOf": 1735750800000,
+      "recapDays": []
+    },
+    "expected": {
+      "currentStatus": "driving",
+      "drivingRemainingMs": 32400000,
+      "dutyWindowRemainingMs": 43200000,
+      "breakRequiredInMs": 21600000,
+      "cycleRemainingMs": 226800000,
+      "drivingAccumulatedMs": 7200000,
+      "onDutyAccumulatedMs": 7200000,
+      "violationRules": []
+    }
+  }
+]

@@ -1,0 +1,53 @@
+[
+  {
+    "name": "short legal route",
+    "input": {
+      "drivingRemainingSeconds": 39600,
+      "dutyWindowRemainingSeconds": 50400,
+      "breakRequiredInSeconds": 28800,
+      "cycleRemainingSeconds": 252000,
+      "sectionDurationsSeconds": [7200],
+      "fuelIntervalSeconds": null
+    },
+    "expected": {
+      "legality": "legal",
+      "breaksRequired": 0,
+      "overnightRequired": false,
+      "hosAwareEtaSeconds": 7200
+    }
+  },
+  {
+    "name": "break insertion",
+    "input": {
+      "drivingRemainingSeconds": 39600,
+      "dutyWindowRemainingSeconds": 50400,
+      "breakRequiredInSeconds": 3600,
+      "cycleRemainingSeconds": 252000,
+      "sectionDurationsSeconds": [7200],
+      "fuelIntervalSeconds": null
+    },
+    "expected": {
+      "legality": "legal",
+      "breaksRequired": 1,
+      "overnightRequired": false,
+      "hosAwareEtaSeconds": 9000
+    }
+  },
+  {
+    "name": "overnight insertion",
+    "input": {
+      "drivingRemainingSeconds": 3600,
+      "dutyWindowRemainingSeconds": 7200,
+      "breakRequiredInSeconds": 3600,
+      "cycleRemainingSeconds": 252000,
+      "sectionDurationsSeconds": [10800],
+      "fuelIntervalSeconds": null
+    },
+    "expected": {
+      "legality": "warning",
+      "breaksRequired": 0,
+      "overnightRequired": true,
+      "hosAwareEtaSeconds": 46800
+    }
+  }
+]

@@ -1,0 +1,31 @@
+[package]
+name = "offline-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+publish.workspace = true
+
+[lib]
+name = "offline_core"
+crate-type = ["cdylib", "staticlib", "rlib"]
+
+[dependencies]
+mobile-contracts = { path = "../mobile-contracts" }
+mobile-domain = { path = "../mobile-domain" }
+mobile-jurisdiction = { path = "../mobile-jurisdiction" }
+mobile-models = { path = "../mobile-models" }
+mobile-store = { path = "../mobile-store" }
+mobile-sync = { path = "../mobile-sync" }
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+uniffi = { workspace = true, features = ["tokio"] }
+
+[dev-dependencies]
+tokio.workspace = true
+
+[lints]
+workspace = true

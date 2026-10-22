@@ -1,0 +1,35 @@
+{
+  "dataset": [
+    {
+      "code": "AA",
+      "polygons": [[[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]],
+      "bbox": [0, 0, 1, 1]
+    },
+    {
+      "code": "BB",
+      "polygons": [[[[1, 0], [2, 0], [2, 1], [1, 1], [1, 0]]]],
+      "bbox": [1, 0, 2, 1]
+    }
+  ],
+  "cases": [
+    {
+      "name": "crossing track",
+      "points": [
+        { "lat": 0.5, "lng": 0.5, "recordedAt": 1 },
+        { "lat": 0.5, "lng": 0.95, "recordedAt": 2 },
+        { "lat": 0.5, "lng": 1.5, "recordedAt": 3 }
+      ],
+      "expectedJurisdictions": ["AA", "BB"],
+      "unattributed": false
+    },
+    {
+      "name": "outside coverage",
+      "points": [
+        { "lat": 10, "lng": 10, "recordedAt": 1 },
+        { "lat": 10, "lng": 10.5, "recordedAt": 2 }
+      ],
+      "expectedJurisdictions": [],
+      "unattributed": true
+    }
+  ]
+}

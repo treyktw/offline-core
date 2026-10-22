@@ -1,0 +1,27 @@
+# Rust
+/target/
+
+# Generated bindings and packaged artifacts are rebuilt by scripts/, never committed
+/generated/
+*.xcframework
+*.aar
+
+# iOS sample
+samples/ios/*.xcodeproj/
+samples/ios/DerivedData/
+xcuserdata/
+
+# Android sample
+samples/android/.gradle/
+samples/android/build/
+samples/android/app/build/
+samples/android/local.properties
+samples/android/gradlew
+samples/android/gradlew.bat
+samples/android/gradle/wrapper/gradle-wrapper.jar
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+__pycache__/
